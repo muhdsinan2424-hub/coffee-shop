@@ -1,0 +1,338 @@
+:root {
+  /* Color System - Bright Luxury Palette */
+  --color-bg-ivory: #FDFCF7;      /* Primary Light Background */
+  --color-bg-stone: #F5F3EC;      /* Secondary Light Background / Cards */
+  --color-bg-cream: #EFECE5;      /* Accent backgrounds / Frosted borders */
+  
+  --color-olive: #3E4E3D;         /* Primary Brand Color - Deep Olive */
+  --color-forest: #253024;        /* Deep Headers / Dark Buttons - Forest Green */
+  --color-gold: #C5A47E;          /* Accent / Trims - Champagne Gold */
+  --color-copper: #C67B54;        /* Warm details */
+  --color-amber: #E5A93C;         /* Highlight details */
+
+  --color-charcoal: #1C1C1C;      /* Primary body text & headings */
+  --color-charcoal-muted: #555555;/* Secondary body text & descriptions */
+  
+  /* Fonts */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  /* Transitions & Easing */
+  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-snappy: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-slow: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-elastic-premium: cubic-bezier(0.25, 1.25, 0.5, 1);
+  --ease-in-out-premium: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--color-bg-ivory);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  scrollbar-width: none; /* Hide scrollbar for smooth scroll */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+  background-color: var(--color-bg-ivory);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection style */
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-bg-ivory);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-forest);
+}
+
+p {
+  color: var(--color-charcoal-muted);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Frosted Glassmorphism utility - Light Redesign */
+.glass-panel {
+  background: rgba(253, 252, 247, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(197, 164, 126, 0.22);
+  box-shadow: 0 10px 40px 0 rgba(62, 78, 61, 0.04);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(253, 252, 247, 0.6);
+  box-shadow: 0 4px 15px rgba(62, 78, 61, 0.02);
+}
+
+/* Custom Cursor Glow */
+.custom-cursor {
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--color-olive);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+  mix-blend-mode: normal; /* Normal mode so it remains visible on bright backgrounds */
+}
+
+.custom-cursor-dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-gold);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+}
+
+.custom-cursor-glow {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(197, 164, 126, 0.08) 0%, rgba(197, 164, 126, 0) 70%);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Animations */
+@keyframes steam-rise {
+  0% {
+    transform: translateY(0) scaleX(1) scaleY(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-50px) scaleX(1.2) scaleY(0.9) rotate(5deg);
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateY(-100px) scaleX(1.5) scaleY(0.8) rotate(-5deg);
+    opacity: 0;
+  }
+}
+
+.steam-particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(253, 251, 247, 0.25) 0%, rgba(253, 251, 247, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Smooth Scroll container */
+.scroll-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Magnetic Button support */
+.magnetic-btn {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Lenis CSS integration */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* GPU Acceleration Utility */
+.gpu-accelerated {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* Waving Steam Animation for Loader.jsx */
+@keyframes steamWave {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0.4;
+    transform: translateY(0) scaleX(1);
+  }
+  50% {
+    stroke-dashoffset: -10;
+    opacity: 0.9;
+    transform: translateY(-2px) scaleX(1.05);
+  }
+  100% {
+    stroke-dashoffset: -20;
+    opacity: 0.4;
+    transform: translateY(0) scaleX(1);
+  }
+}
+
+.steam-line {
+  stroke-dasharray: 6, 14;
+  animation: steamWave 3s infinite linear;
+}
+
+/* Drifting Volumetric Glow for CinematicScroller text panels */
+@keyframes volumetricGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Floating badge environment movement */
+@keyframes floatingBadge {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.badge-float {
+  animation: floatingBadge 6s infinite ease-in-out;
+}
+
+/* Premium Button Shine Reveal */
+@keyframes btnShine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+.btn-shine-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine-overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.btn-shine-container:hover .btn-shine-overlay {
+  animation: btnShine 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: translateY(-100%);
+  }
+  80% {
+    transform: translateY(200%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+/* GPU Acceleration and Rendering Optimizations */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Off-screen rendering containment to boost scroll performance */
+#menu {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
+}
+
+#interior {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
+}
+
+#reservations {
+  content-visibility: auto;
+  contain-intrinsic-size: 700px;
+}
+
+/* Add will-change to scroll-linked animated targets for pre-allocation */
+.gallery-card-1, .gallery-card-2, .gallery-card-3 {
+  will-change: transform, opacity;
+}
+
+.reveal-word {
+  will-change: transform, opacity, filter;
+}
+
+.hero-canvas-container {
+  will-change: transform;
+}
