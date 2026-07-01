@@ -9,7 +9,8 @@ const TOTAL_FRAMES = 240;
 
 const frameIndex = (index) => {
   const paddedIndex = String(index).padStart(3, "0");
-  return `/coffe/ezgif-frame-${paddedIndex}.jpg`;
+  const base = import.meta.env.BASE_URL || "/";
+  return `${base}coffe/ezgif-frame-${paddedIndex}.jpg`.replace(/\/+/g, "/");
 };
 
 export default function Hero() {
